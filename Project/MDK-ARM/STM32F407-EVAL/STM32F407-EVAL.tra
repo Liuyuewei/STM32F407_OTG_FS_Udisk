@@ -1,0 +1,52 @@
+*** Creating Trace Output File '.\STM32F407-EVAL\STM32F407-EVAL.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '".\stm32f407-eval\udisk.o"'
+### List of Objects: adding '".\stm32f407-eval\bsp_nand_flash.o"'
+### List of Objects: adding '".\stm32f407-eval\flash_if.o"'
+### List of Objects: adding '".\stm32f407-eval\main.o"'
+### List of Objects: adding '".\stm32f407-eval\uart_communication.o"'
+### List of Objects: adding '".\stm32f407-eval\usb_bsp.o"'
+### List of Objects: adding '".\stm32f407-eval\usbd_desc.o"'
+### List of Objects: adding '".\stm32f407-eval\usbd_storage_template.o"'
+### List of Objects: adding '".\stm32f407-eval\usbd_usr.o"'
+### List of Objects: adding '".\stm32f407-eval\fat.o"'
+### List of Objects: adding '".\stm32f407-eval\system_stm32f4xx.o"'
+### List of Objects: adding '".\stm32f407-eval\startup_stm32f40xx.o"'
+### List of Objects: adding '".\stm32f407-eval\stm32f4xx_exti.o"'
+### List of Objects: adding '".\stm32f407-eval\stm32f4xx_gpio.o"'
+### List of Objects: adding '".\stm32f407-eval\stm32f4xx_pwr.o"'
+### List of Objects: adding '".\stm32f407-eval\stm32f4xx_rcc.o"'
+### List of Objects: adding '".\stm32f407-eval\stm32f4xx_syscfg.o"'
+### List of Objects: adding '".\stm32f407-eval\stm32f4xx_fsmc.o"'
+### List of Objects: adding '".\stm32f407-eval\stm32f4xx_flash.o"'
+### List of Objects: adding '".\stm32f407-eval\stm32f4xx_tim.o"'
+### List of Objects: adding '".\stm32f407-eval\stm32f4xx_usart.o"'
+### List of Objects: adding '".\stm32f407-eval\misc.o"'
+### List of Objects: adding '".\stm32f407-eval\stm32f4xx_it.o"'
+### List of Objects: adding '".\stm32f407-eval\usb_core.o"'
+### List of Objects: adding '".\stm32f407-eval\usb_dcd.o"'
+### List of Objects: adding '".\stm32f407-eval\usb_dcd_int.o"'
+### List of Objects: adding '".\stm32f407-eval\usbd_core.o"'
+### List of Objects: adding '".\stm32f407-eval\usbd_ioreq.o"'
+### List of Objects: adding '".\stm32f407-eval\usbd_req.o"'
+### List of Objects: adding '".\stm32f407-eval\usbd_msc_bot.o"'
+### List of Objects: adding '".\stm32f407-eval\usbd_msc_core.o"'
+### List of Objects: adding '".\stm32f407-eval\usbd_msc_data.o"'
+### List of Objects: adding '".\stm32f407-eval\usbd_msc_scsi.o"'
+### List of Objects: adding '".\stm32f407-eval\lcd_ra8875.o"'
+### ADS-LD Command completed:
+--cpu Cortex-M4.fp ".\stm32f407-eval\udisk.o" ".\stm32f407-eval\bsp_nand_flash.o" ".\stm32f407-eval\flash_if.o" ".\stm32f407-eval\main.o" ".\stm32f407-eval\uart_communication.o" ".\stm32f407-eval\usb_bsp.o" ".\stm32f407-eval\usbd_desc.o" ".\stm32f407-eval\usbd_storage_template.o" ".\stm32f407-eval\usbd_usr.o" ".\stm32f407-eval\fat.o" ".\stm32f407-eval\system_stm32f4xx.o" ".\stm32f407-eval\startup_stm32f40xx.o" ".\stm32f407-eval\stm32f4xx_exti.o" ".\stm32f407-eval\stm32f4xx_gpio.o" ".\stm32f407-eval\stm32f4xx_pwr.o" ".\stm32f407-eval\stm32f4xx_rcc.o" ".\stm32f407-eval\stm32f4xx_syscfg.o" ".\stm32f407-eval\stm32f4xx_fsmc.o" ".\stm32f407-eval\stm32f4xx_flash.o" ".\stm32f407-eval\stm32f4xx_tim.o" ".\stm32f407-eval\stm32f4xx_usart.o" ".\stm32f407-eval\misc.o" ".\stm32f407-eval\stm32f4xx_it.o" ".\stm32f407-eval\usb_core.o" ".\stm32f407-eval\usb_dcd.o" ".\stm32f407-eval\usb_dcd_int.o" ".\stm32f407-eval\usbd_core.o" ".\stm32f407-eval\usbd_ioreq.o" ".\stm32f407-eval\usbd_req.o" ".\stm32f407-eval\usbd_msc_bot.o" ".\stm32f407-eval\usbd_msc_core.o" ".\stm32f407-eval\usbd_msc_data.o" ".\stm32f407-eval\usbd_msc_scsi.o" ".\stm32f407-eval\lcd_ra8875.o" --library_type=microlib --strict --scatter ".\STM32F407-EVAL\STM32F407-EVAL.sct" 
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\STM32F407-EVAL.map" -o .\STM32F407-EVAL\STM32F407-EVAL.axf### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '.\STM32F407-EVAL\STM32F407-EVAL.axf'
+### ADS-LD Command File: '.\STM32F407-EVAL\STM32F407-EVAL.lnp'
+### Checking for dirty Components...
+### Creating CmdFile '.\STM32F407-EVAL\STM32F407-EVAL.lnp', Handle=0x00000370
+### Writing '.lnp' file
+### ADS-LD Command file '.\STM32F407-EVAL\STM32F407-EVAL.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

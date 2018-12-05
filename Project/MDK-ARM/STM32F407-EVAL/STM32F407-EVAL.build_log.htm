@@ -1,0 +1,52 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.23.0.0
+Copyright (C) 2017 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: dsfds Microsoft, Microsoft, LIC=0VRDY-IU4FS-BWX2G-VHZ4H-N60JG-X0Q7G
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.23
+Toolchain Path:  D:\Program Files\keil\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 4 (build 422)
+Assembler:       Armasm.exe V5.06 update 4 (build 422)
+Linker/Locator:  ArmLink.exe V5.06 update 4 (build 422)
+Library Manager: ArmAr.exe V5.06 update 4 (build 422)
+Hex Converter:   FromElf.exe V5.06 update 4 (build 422)
+CPU DLL:         SARMCM3.DLL V5.23
+Dialog DLL:      DCM.DLL V1.15.0.0
+Target DLL:      Segger\JL2CM3.dll V2.99.23.0
+Dialog DLL:      TCM.DLL V1.27.0.0
+ 
+<h2>Project:</h2>
+E:\work\Project\FastRing\Design\Software\下位机\飞特凝样机\程序\STM32F407_OTG_FS_Udisk\Project\MDK-ARM\Project.uvproj
+Project File Date:  12/05/2018
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 4 (build 422)', folder: 'D:\Program Files\keil\ARM\ARMCC\Bin'
+Build target 'STM32F407_EVAL'
+compiling main.c...
+..\..\App\Uart_communication.h(38): warning:  #1295-D: Deprecated declaration uart5_read - give arg types
+  unsigned int uart5_read();
+..\..\App\main.c(127): warning:  #111-D: statement is unreachable
+  	if(!GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_2))
+..\..\App\main.c(85): warning:  #550-D: variable "result"  was set but never used
+  	unsigned int i = 0 ,result = 0;
+..\..\App\main.c(86): warning:  #177-D: variable "counter"  was declared but never referenced
+  	static char counter=0;
+..\..\App\main.c(87): warning:  #177-D: variable "msg_string"  was declared but never referenced
+  	unsigned char msg_string[2]={0};
+..\..\App\main.c(358): warning:  #177-D: variable "i"  was declared but never referenced
+  	int i;
+..\..\App\main.c: 6 warnings, 0 errors
+linking...
+Program Size: Code=19248 RO-data=424 RW-data=116 ZI-data=3068  
+FromELF: creating hex file...
+After Build - User command #1: fromelf --bin --output .\obj\11.bin .\STM32F407-EVAL\STM32F407-EVAL.axf
+".\STM32F407-EVAL\STM32F407-EVAL.axf" - 0 Error(s), 6 Warning(s).
+Build Time Elapsed:  00:00:02
+</pre>
+</body>
+</html>
