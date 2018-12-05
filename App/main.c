@@ -79,29 +79,9 @@ void slave_boot()
 	GPIO_SetBits(GPIOG,GPIO_Pin_1);;//MCU_NRST_H;		
 	delay_nms(500);	
 }
-int main(void)
+void master_slave_communicate()
 {
-	unsigned char buf[512]={0};
-	unsigned int i = 0 ,result = 0;
-	static char counter=0;
-	unsigned char msg_string[2]={0};
-	hard_init();
-	//从机MCU BOOT0 BOOT1 NRST GPIO初始化
-	MCU_UPDATE_IO_init();	
-	if(!GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_2))
-	{
-		for(i=0x4567;i--;);
-		for(i=0x4567;i--;);
-		while(!GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_2))
-		{
-			GPIO_SetBits(GPIOE,GPIO_Pin_3);	//开机状态保持	LYW 20181203
-			GPIO_SetBits(GPIOE,GPIO_Pin_4); //开启LED指示灯	LYW 20181203
-			if(GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_2))
-			{
-				break;
-			}
-		}
-	}
+	unsigned int i,result = 0;
 	do
 	{
 		//从机进入自举程序
@@ -119,9 +99,16 @@ int main(void)
 	send_command(S_GETID);
 	result = uart5_read();
 	delay_nms(500);
-	
-	
-	while(1);
+
+}
+int main(void)
+{
+	unsigned char buf[512]={0};
+	unsigned int i = 0 ,result = 0;
+	static char counter=0;
+	unsigned char msg_string[2]={0};
+	hard_init();
+	MCU_UPDATE_IO_init();
 	
 	//检测开机按键按下	LYW 20181203
 	if(!GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_2))
@@ -138,6 +125,12 @@ int main(void)
 			}
 		}
 	}
+	
+//	master_slave_communicate();
+//	while(1);
+	
+	
+	
 //如果等1，则进行简单的闪灯测试程序，否则为正常的boot程序
 #if 0	
 	//液晶显示驱动初始化
@@ -158,8 +151,8 @@ int main(void)
 	//开启定时器		1s	LYW 20181203
 	Timer2_Config();
 	Timer2_NVIC_Config();
-	//从机MCU BOOT0 BOOT1 NRST GPIO初始化
-	MCU_UPDATE_IO_init();	
+//	//从机MCU BOOT0 BOOT1 NRST GPIO初始化
+//	MCU_UPDATE_IO_init();	
 
 	//USB_VBUS	USB电源引脚，即插入USB线 LYW 20181203
 	if((GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_9) != 0))
@@ -263,10 +256,6 @@ int main(void)
 					
 					}
 					while(rcv_mcu_buf[0] != 0x79);
-					//从机进入自举程序
-					send_test_command();
-					result = uart5_read();
-					delay_nms(500);
 					//获取自举程序版本号和命令
 					send_command(S_GETALL);
 					result = uart5_read();

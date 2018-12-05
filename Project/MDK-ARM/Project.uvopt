@@ -134,6 +134,11 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>DLGUARM</Key>
+          <Name></Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>ARMRTXEVENTFLAGS</Key>
           <Name>-L70 -Z18 -C0 -M0 -T1</Name>
         </SetRegEntry>
@@ -146,10 +151,6 @@
           <Number>0</Number>
           <Key>DLGTARM</Key>
           <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>DLGUARM</Key>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -181,9 +182,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>116</LineNumber>
+          <LineNumber>95</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134219014</Address>
+          <Address>134220652</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -192,14 +193,14 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>E:\work\Project\FastRing\Design\Software\涓嬩綅鏈?椋炵壒鍑濇牱鏈?绋嬪簭\STM32F407_OTG_FS_Udisk\App\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\STM32F407_EVAL\../../App/main.c\116</Expression>
+          <Expression>\\STM32F407_EVAL\../../App/main.c\95</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>91</LineNumber>
+          <LineNumber>97</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134218908</Address>
+          <Address>134220664</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -208,14 +209,14 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>E:\work\Project\FastRing\Design\Software\涓嬩綅鏈?椋炵壒鍑濇牱鏈?绋嬪簭\STM32F407_OTG_FS_Udisk\App\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\STM32F407_EVAL\../../App/main.c\91</Expression>
+          <Expression>\\STM32F407_EVAL\../../App/main.c\97</Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>122</LineNumber>
+          <LineNumber>101</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134219042</Address>
+          <Address>134220684</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -224,14 +225,14 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>E:\work\Project\FastRing\Design\Software\涓嬩綅鏈?椋炵壒鍑濇牱鏈?绋嬪簭\STM32F407_OTG_FS_Udisk\App\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\STM32F407_EVAL\../../App/main.c\122</Expression>
+          <Expression>\\STM32F407_EVAL\../../App/main.c\101</Expression>
         </Bp>
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>118</LineNumber>
+          <LineNumber>114</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134219024</Address>
+          <Address>134221032</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -240,7 +241,71 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>E:\work\Project\FastRing\Design\Software\涓嬩綅鏈?椋炵壒鍑濇牱鏈?绋嬪簭\STM32F407_OTG_FS_Udisk\App\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\STM32F407_EVAL\../../App/main.c\118</Expression>
+          <Expression>\\STM32F407_EVAL\../../App/main.c\114</Expression>
+        </Bp>
+        <Bp>
+          <Number>4</Number>
+          <Type>0</Type>
+          <LineNumber>260</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134221620</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>E:\work\Project\FastRing\Design\Software\涓嬩綅鏈?椋炵壒鍑濇牱鏈?绋嬪簭\STM32F407_OTG_FS_Udisk\App\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\STM32F407_EVAL\../../App/main.c\260</Expression>
+        </Bp>
+        <Bp>
+          <Number>5</Number>
+          <Type>0</Type>
+          <LineNumber>262</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134221630</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>E:\work\Project\FastRing\Design\Software\涓嬩綅鏈?椋炵壒鍑濇牱鏈?绋嬪簭\STM32F407_OTG_FS_Udisk\App\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\STM32F407_EVAL\../../App/main.c\262</Expression>
+        </Bp>
+        <Bp>
+          <Number>6</Number>
+          <Type>0</Type>
+          <LineNumber>266</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134221648</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>E:\work\Project\FastRing\Design\Software\涓嬩綅鏈?椋炵壒鍑濇牱鏈?绋嬪簭\STM32F407_OTG_FS_Udisk\App\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\STM32F407_EVAL\../../App/main.c\266</Expression>
+        </Bp>
+        <Bp>
+          <Number>7</Number>
+          <Type>0</Type>
+          <LineNumber>275</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134221700</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>E:\work\Project\FastRing\Design\Software\涓嬩綅鏈?椋炵壒鍑濇牱鏈?绋嬪簭\STM32F407_OTG_FS_Udisk\App\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\STM32F407_EVAL\../../App/main.c\275</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

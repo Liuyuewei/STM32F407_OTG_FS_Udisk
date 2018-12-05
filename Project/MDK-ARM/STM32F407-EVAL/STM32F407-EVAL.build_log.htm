@@ -30,22 +30,23 @@ Build target 'STM32F407_EVAL'
 compiling main.c...
 ..\..\App\Uart_communication.h(38): warning:  #1295-D: Deprecated declaration uart5_read - give arg types
   unsigned int uart5_read();
-..\..\App\main.c(127): warning:  #111-D: statement is unreachable
-  	if(!GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_2))
-..\..\App\main.c(85): warning:  #550-D: variable "result"  was set but never used
+..\..\App\main.c(84): warning:  #177-D: variable "i"  was declared but never referenced
+  	unsigned int i,result = 0;
+..\..\App\main.c(84): warning:  #550-D: variable "result"  was set but never used
+  	unsigned int i,result = 0;
+..\..\App\main.c(107): warning:  #550-D: variable "result"  was set but never used
   	unsigned int i = 0 ,result = 0;
-..\..\App\main.c(86): warning:  #177-D: variable "counter"  was declared but never referenced
+..\..\App\main.c(108): warning:  #177-D: variable "counter"  was declared but never referenced
   	static char counter=0;
-..\..\App\main.c(87): warning:  #177-D: variable "msg_string"  was declared but never referenced
+..\..\App\main.c(109): warning:  #177-D: variable "msg_string"  was declared but never referenced
   	unsigned char msg_string[2]={0};
-..\..\App\main.c(358): warning:  #177-D: variable "i"  was declared but never referenced
+..\..\App\main.c(347): warning:  #177-D: variable "i"  was declared but never referenced
   	int i;
-..\..\App\main.c: 6 warnings, 0 errors
+..\..\App\main.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=19248 RO-data=424 RW-data=116 ZI-data=3068  
+Program Size: Code=31812 RO-data=484 RW-data=412 ZI-data=4916  
 FromELF: creating hex file...
-After Build - User command #1: fromelf --bin --output .\obj\11.bin .\STM32F407-EVAL\STM32F407-EVAL.axf
-".\STM32F407-EVAL\STM32F407-EVAL.axf" - 0 Error(s), 6 Warning(s).
+".\STM32F407-EVAL\STM32F407-EVAL.axf" - 0 Error(s), 7 Warning(s).
 Build Time Elapsed:  00:00:02
 </pre>
 </body>
