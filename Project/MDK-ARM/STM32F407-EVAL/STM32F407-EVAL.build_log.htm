@@ -27,6 +27,20 @@ Project File Date:  12/05/2018
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 4 (build 422)', folder: 'D:\Program Files\keil\ARM\ARMCC\Bin'
 Build target 'STM32F407_EVAL'
+compiling fat.c...
+..\..\App\Uart_communication.h(38): warning:  #1295-D: Deprecated declaration uart5_read - give arg types
+  unsigned int uart5_read();
+..\..\FAT12\fat.c(119): warning:  #223-D: function "memset" declared implicitly
+  	memset(buffer,0,512);
+..\..\FAT12\fat.c(129): warning:  #223-D: function "strcpy" declared implicitly
+  	strcpy((char*)Fat12_Info.dos_sp.oem, (char*)sp->oem);
+..\..\FAT12\fat.c(219): warning:  #223-D: function "memset" declared implicitly
+  			memset(buff,0,read_size);
+..\..\FAT12\fat.c(251): warning:  #223-D: function "memset" declared implicitly
+  			memset(buff,0,read_size);
+..\..\FAT12\fat.c(173): warning:  #550-D: variable "offset"  was set but never used
+  	unsigned long SECTOR, offset, read_size;
+..\..\FAT12\fat.c: 6 warnings, 0 errors
 compiling main.c...
 ..\..\App\Uart_communication.h(38): warning:  #1295-D: Deprecated declaration uart5_read - give arg types
   unsigned int uart5_read();
@@ -40,14 +54,14 @@ compiling main.c...
   	static char counter=0;
 ..\..\App\main.c(109): warning:  #177-D: variable "msg_string"  was declared but never referenced
   	unsigned char msg_string[2]={0};
-..\..\App\main.c(347): warning:  #177-D: variable "i"  was declared but never referenced
+..\..\App\main.c(346): warning:  #177-D: variable "i"  was declared but never referenced
   	int i;
 ..\..\App\main.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=31812 RO-data=484 RW-data=412 ZI-data=4916  
+Program Size: Code=31820 RO-data=484 RW-data=412 ZI-data=4916  
 FromELF: creating hex file...
-".\STM32F407-EVAL\STM32F407-EVAL.axf" - 0 Error(s), 7 Warning(s).
-Build Time Elapsed:  00:00:02
+".\STM32F407-EVAL\STM32F407-EVAL.axf" - 0 Error(s), 13 Warning(s).
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

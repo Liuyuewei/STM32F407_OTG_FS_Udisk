@@ -155,6 +155,7 @@ void SysTick_Handler(void)
  
 }
 unsigned int key_on_time = 0;
+//按开机键2s后关机
 void TIM2_IRQHandler(void)
 {
 	 if(TIM_GetITStatus(TIM2,TIM_IT_Update) == SET)

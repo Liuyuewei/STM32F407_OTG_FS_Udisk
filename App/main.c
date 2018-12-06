@@ -113,8 +113,7 @@ int main(void)
 	//检测开机按键按下	LYW 20181203
 	if(!GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_2))
 	{
-		for(i=0x4567;i--;);
-		for(i=0x4567;i--;);
+		delay_nms(100);
 		while(!GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_2))
 		{
 			GPIO_SetBits(GPIOE,GPIO_Pin_3);	//开机状态保持	LYW 20181203
@@ -144,11 +143,12 @@ int main(void)
 		delay_nms(500);
 		GPIO_SetBits(GPIOE,GPIO_Pin_4); //开启LED指示灯	LYW 20181203
 		delay_nms(500);
-		GPIO_ResetBits(GPIOE,GPIO_Pin_4); //开启LED指示灯	LYW 20181203
+		GPIO_ResetBits(GPIOE,GPIO_Pin_4); //关闭LED指示灯	LYW 20181203
 		
 	}
 #else 
 	//开启定时器		1s	LYW 20181203
+	//按开机键2s后关机   LYW 20181203
 	Timer2_Config();
 	Timer2_NVIC_Config();
 //	//从机MCU BOOT0 BOOT1 NRST GPIO初始化
@@ -189,8 +189,7 @@ int main(void)
 		    //USB进行初始化
 			USBD_Init(&USB_OTG_dev,USB_OTG_FS_CORE_ID,&USR_desc,&USBD_MSC_cb,&USR_cb);
 
-			for(i=0x4567;i--;);
-			for(i=0x4567;i--;);
+			delay_nms(500);
 			/* Initialize flashdestination variable */
 			flashdestination = APPLICATION_ADDRESS;
 
@@ -200,10 +199,7 @@ int main(void)
 			{
 				if(GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_2)==0)
 				{
-					for(i=0x4567;i--;);
-					for(i=0x4567;i--;);
-					for(i=0x4567;i--;);
-					for(i=0x4567;i--;);
+					delay_nms(500);
 					//如果PE2依然为低电平，则退出。
 					if(GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_2)==0)
 					{
@@ -215,6 +211,7 @@ int main(void)
 			//把从机程序通过串口发给从机
 			while(1)
 			{
+				GPIO_ResetBits(GPIOE,GPIO_Pin_4); //关闭指示灯，进入升级状态	LYW 20181203
 //				close_nandflash_cs();
 //				enable_lcd_cs();
 //				RA8875_DispStr(550,200,"开始升级......",RA_FONT_16);
@@ -288,6 +285,8 @@ int main(void)
 		delay_nms(1000);
 		GPIO_SetBits(GPIOG,GPIO_Pin_1);;//MCU_NRST_H;	
 		delay_nms(1000);
+		//关闭定时器 这样会影响应用程序定时器
+		TIM_Cmd(TIM2,DISABLE);
 	}			
 	while(1)
 	{

@@ -147,7 +147,19 @@ void BlockToHTS(unsigned long block, int *head, int *track, int *sector )
 	*track =  block / ( 18 * 2 );
 	*sector = block % 18 + 1;
 }
-
+//更新程序时闪灯
+void update_led(unsigned int  temp)
+{
+	temp ++;
+	if(temp % 2)
+	{
+		GPIO_ResetBits(GPIOE,GPIO_Pin_4); //关闭LED指示灯	LYW 20181203
+	}
+	else
+	{
+		GPIO_SetBits(GPIOE,GPIO_Pin_4); //开启LED指示灯	LYW 20181203
+	}
+}
 //---------------------------------------------------------------------------------------------------------------------
 //
 //  读取 Fat12 文件
@@ -164,6 +176,7 @@ int fat12_read(FILE1*fp, void *buff, unsigned long __sb,bool flag)
 	unsigned int  mcu_page_num = 0;                   //从机已经写了多少个256 byte个数据
 	unsigned int  send_length = 0, i = 0;
 	unsigned char  result = 0;							//返回值判断
+	unsigned int  temp = 0,temp_led = 0;
 	
 	if(fp->current_pos >= fp->f_size)
 	{
@@ -176,7 +189,20 @@ int fat12_read(FILE1*fp, void *buff, unsigned long __sb,bool flag)
 	}
 	
 	while (size>0)
-	{
+	{	
+		if(flag == 0)
+		{			
+			temp ++;
+			if(temp >= 50)
+			{
+				temp = 0;
+				update_led(temp_led ++);
+			}
+		}
+		else
+		{
+			update_led(temp_led ++);
+		}
 		offset = fp->current_pos % 512;
 		SECTOR = Fat12_ToSec(fp->current_blk);
 		if(fp->f_size <= fp->current_pos) 
