@@ -812,9 +812,6 @@ void FSMC_NAND_Test(void)
   {
 	 //printf("Type = Unknow\r\n");
   }
-
-
-
 }  
 
 /*
@@ -830,18 +827,13 @@ uint8_t NAND_Format(void)
 	uint16_t i, n;
 	uint16_t usGoodBlockCount;
 
-  WriteReadAddr.Zone = 0;
+	WriteReadAddr.Zone = 0;
 	WriteReadAddr.Block = 0;
 	WriteReadAddr.Page = 0;
 	for (i = 0; i < 4096; i++)
 	{
-	
-			FSMC_NAND_EraseBlock(WriteReadAddr);
-			 FSMC_NAND_AddressIncrement(&WriteReadAddr);
-		
+
+		FSMC_NAND_EraseBlock(WriteReadAddr);
+		FSMC_NAND_AddressIncrement(&WriteReadAddr);		
 	}
-
-
-
-
 }

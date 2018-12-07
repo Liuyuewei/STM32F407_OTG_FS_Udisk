@@ -177,6 +177,7 @@ int fat12_read(FILE1*fp, void *buff, unsigned long __sb,bool flag)
 	unsigned int  send_length = 0, i = 0;
 	unsigned char  result = 0;							//返回值判断
 	unsigned int  temp = 0,temp_led = 0;
+	unsigned char read_temp[256] = {0};
 	
 	if(fp->current_pos >= fp->f_size)
 	{
@@ -230,17 +231,11 @@ int fat12_read(FILE1*fp, void *buff, unsigned long __sb,bool flag)
 			{
 				if(mcu_page_num == 0)                    //首次写时进行一次全页擦除已写数据
 				{
-					//result = flash_erase_all();
-					if(result == 0)
-					{
-						//擦除芯片未收到回应
-					}
-					else
-					{
-						//收到回应
-					}
+					result = flash_erase_all();
 				}
 				Write_mcu_flash((MCU_START_FLASH + mcu_page_num * 256),(uint8_t*) buff,256);
+				Read_mcu_flash((MCU_START_FLASH + mcu_page_num * 256),(uint8_t*) read_temp,256);
+				stm32isp_verify((unsigned char*)buff,(unsigned char*)read_temp,256);
 				mcu_page_num++;
 				Write_mcu_flash((MCU_START_FLASH + mcu_page_num * 256),((uint8_t*) buff + 256),256);
 				mcu_page_num++;

@@ -35,16 +35,19 @@ void delay_nus(u32 n);
 void delay_1ms(void);
 void delay_nms(u32 n);
 unsigned char Generate_XorCheckByte(unsigned char *SourceByte_pt, unsigned int CheckByteNum);
-unsigned int uart5_read();
+int waitACK();
 void uart5_write (unsigned char * msg_string,unsigned short size);
 void send_command(unsigned char cmd_byte);
-void send_test_command(void);
 void send_adress(unsigned int ADRESS_U32);
 unsigned char Write_mcu_flash(unsigned int flash_address,unsigned char * write_data,unsigned int write_length);
+int Read_mcu_flash(unsigned int flash_address,unsigned char * read_data,unsigned int read_length);
+int stm32isp_verify(unsigned char * write_buffer,unsigned char * read_buffer,int len);
 void send_erase_data(void);
 unsigned char flash_erase_all(void);
 
-
+int stm32isp_sync();
+int get_ver_command();
+int get_ID_command();
 
 extern volatile int mcu_count;
 extern unsigned char rcv_mcu_buf[260];

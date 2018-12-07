@@ -224,6 +224,16 @@ void slave_rst()
 	delay_nms(500);
 	GPIO_SetBits(GPIOG,GPIO_Pin_1);;//MCU_NRST_H;	
 }
+//LCD初始化
+void LCD_init()
+{
+	//液晶显示驱动初始化
+	RA8875_InitHard();
+	bmp_dispflash(ADRESS_LOGIN,0,0,LENGTH_LOGIN_X,LENGTH_LOGIN_Y);	
+	bmp_dispflash(ADRESS_UNCOMPUTER,704,10,30,18);	
+	SERIAL_ROM_Font_mode();	
+	Graphic_Mode();//
+}
 int main(void)
 {
 	unsigned char buf[512]={0};
@@ -268,13 +278,7 @@ int main(void)
 		//USB_VBUS依然为高电平	
 		if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_9) != 0)
 		{
-			//液晶显示驱动初始化
-			RA8875_InitHard();
-			bmp_dispflash(ADRESS_LOGIN,0,0,LENGTH_LOGIN_X,LENGTH_LOGIN_Y);	
-			bmp_dispflash(ADRESS_UNCOMPUTER,704,10,30,18);	
-			SERIAL_ROM_Font_mode();	
-			Graphic_Mode();//
-
+			LCD_init();
 			enable_nandflash_cs();
 			close_lcd_cs();
 			
@@ -339,22 +343,14 @@ int main(void)
 				fpp=fat12_openFILE1("LPKJ-001");
 				if(fpp!=NULL && !Slave_flag)
 				{
-					slave_boot();
-					do
-					{
-						//从机进入自举程序
-						send_test_command();
-						result = uart5_read();
-						delay_nms(100);					
-					}
-					while(rcv_mcu_buf[0] != 0x79);
-					//获取自举程序版本号和命令
-					send_command(S_GETALL);
-					result = uart5_read();
+					//从机进入自举程序
+					stm32isp_sync();
 					delay_nms(500);
+					//获取自举程序版本号和命令
+					get_ver_command();
+					delay_nms(500);					
 					//获取芯片ID
-					send_command(S_GETID);
-					result = uart5_read();
+					get_ID_command();
 					delay_nms(500);
 					cout=fpp->f_size;
 					//读取文件内容并通过串口传给从机

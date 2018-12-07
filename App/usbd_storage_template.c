@@ -169,14 +169,14 @@ int8_t STORAGE_Read (uint8_t lun,
                  uint32_t blk_addr,                       
                  uint16_t blk_len)
 {
-static bool flag=0;
-  WriteReadAddr.Zone = (2000+blk_addr)/1024;
+	static bool flag=0;
+	WriteReadAddr.Zone = (2000+blk_addr)/1024;
 	WriteReadAddr.Block = (2000+blk_addr)%1024;
 	WriteReadAddr.Page = 0;
 	if(2000+blk_addr>=4096)
 	return MAL_OK;		
-  FSMC_NAND_ReadSmallPage(buf, WriteReadAddr, blk_len);
-  return MAL_OK;
+	FSMC_NAND_ReadSmallPage(buf, WriteReadAddr, blk_len);
+	return MAL_OK;
 }
 /*******************************************************************************
 * Function Name  : Write_Memory
@@ -190,14 +190,14 @@ int8_t STORAGE_Write (uint8_t lun,
                   uint32_t blk_addr,
                   uint16_t blk_len)
 {
-  WriteReadAddr.Zone = (2000+blk_addr)/1024;
+	WriteReadAddr.Zone = (2000+blk_addr)/1024;
 	WriteReadAddr.Block = (2000+blk_addr)%1024;
 	WriteReadAddr.Page = 0;
 	if(2000+blk_addr>=4096)
 	return MAL_OK;	
 	while(FSMC_NAND_EraseBlock(WriteReadAddr)!=NAND_READY);
 	FSMC_NAND_WriteSmallPage(buf, WriteReadAddr, blk_len);
-  return MAL_OK;
+	return MAL_OK;
 
 }
 /*******************************************************************************

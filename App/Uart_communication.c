@@ -1,10 +1,22 @@
 #include "Uart_communication.h"
 #include "string.h"
 
-
+//串口接收到的数据
 volatile int mcu_count = 0;
+//串口接收数据缓冲区
 unsigned char rcv_mcu_buf[260];
+//串口通信成功
 unsigned char mcu_commu_sucess = 0;
+//存放从机相关信息
+typedef struct {
+    unsigned char bootloaderversion;    //1字节，bootloader版本
+    unsigned char cmd_count;    //支持的所有指令个数
+    unsigned char cmd[16];      //支持的所有指令
+    unsigned int PID;       //product ID
+} stm32info_t;
+//定义结构体变量
+stm32info_t stm32info;
+
 /***************************************************************************
 *函数名：delay_1us()
 *参数：void
@@ -63,6 +75,21 @@ void delay_nms(u32 n)
 	}
 }
 
+//等待从机应答
+int waitACK()    //等待接收数据，第一个字节如果是0x79则认为ok返回1，如果是0x1f则认为失败返回0
+{
+    while(1)
+	{
+		delay_nms(1000);
+        if(0 != mcu_count) 
+		{
+            if(0x79 == rcv_mcu_buf[0])
+                return 1;
+            else
+                return 0;
+        }
+    }
+}
 /*******************************************************************************
 * Function Name  : 产生异或结果
 * Description    : 
@@ -103,22 +130,6 @@ void uart5_write (unsigned char * msg_string,unsigned short size)
 		USART_SendData(UART5,msg_string[i]);
 	}
 }
-
-//读取串口数据
-unsigned int uart5_read()
-{
-	delay_nms(1000);
-	//从串口接收到数据
-	if(mcu_count > 0)
-	{
-		return mcu_count;
-	}
-	else
-	{
-		return 0;
-	}
-	
-}
 void send_command(unsigned char cmd_byte)
 {
 	unsigned char XOR_BYTE = 0x00;
@@ -130,14 +141,68 @@ void send_command(unsigned char cmd_byte)
 	memset(rcv_mcu_buf,0,sizeof(rcv_mcu_buf));
 	uart5_write(send_cmd,2);
 }
-
-void send_test_command(void)
+//从机进入自举模式
+int stm32isp_sync()
 {
-	unsigned char send_cmd[1] = {0};
-	send_cmd[0] = S_START;
+    unsigned char send_command[1] = {S_START};
 	mcu_count = 0;
 	memset(rcv_mcu_buf,0,sizeof(rcv_mcu_buf));
-	uart5_write(send_cmd,1);
+	uart5_write(send_command,1);
+    waitACK();
+}
+//获取从机版本号及命令
+int get_ver_command()
+{
+    unsigned char get[32];
+    int i = 1, j;
+	send_command(S_GETALL);
+    waitACK();
+    //下面开始接收数据
+    while(1) 
+	{
+		if(i == 16)
+			break;
+        get[i] = rcv_mcu_buf[i];     //读取数据，如果没有数据的话则会等待
+        if(get[i] == 0x79)      //结束
+            break;
+        else if(get[i] == 0x1f)
+            return -1;
+        i++;
+    }
+    //数据处理
+	//命令个数
+	stm32info.cmd_count = get[1];
+	//版本号
+    stm32info.bootloaderversion = get[2];
+    //存放各个命令
+    for(j=0;j < stm32info.cmd_count;j++)
+        stm32info.cmd[j] = get[j+3];
+    return 1;
+}
+//获取从机ID
+int get_ID_command()
+{
+    unsigned char get[16];
+    int i = 1;
+	send_command(S_GETID);
+    waitACK();
+	
+    //接收数据
+    while(1) 
+	{
+		if(i == 16)
+			break;
+        get[i] = rcv_mcu_buf[i];     //读取数据，如果没有数据的话则会等待
+        if(get[i] == 0x79)           //结束
+            break;
+        else if(get[i] == 0x1f)
+            return -1;
+        i++;
+    }
+    stm32info.PID = (get[2] << 8);
+    stm32info.PID += get[3];
+ 
+    return 1;    
 }
 
 void send_adress(unsigned int ADRESS_U32)
@@ -149,11 +214,11 @@ void send_adress(unsigned int ADRESS_U32)
 	send_cmd[2] = (ADRESS_U32 >>  8) & (0xFF);
 	send_cmd[3] = (ADRESS_U32 & 0xFF);
 
-  send_cmd[4] = Generate_XorCheckByte(send_cmd,4);
+	send_cmd[4] = Generate_XorCheckByte(send_cmd,4);
 
-  mcu_count = 0;
-  memset(rcv_mcu_buf,0,sizeof(rcv_mcu_buf));
-  uart5_write(send_cmd,5);
+	mcu_count = 0;
+	memset(rcv_mcu_buf,0,sizeof(rcv_mcu_buf));
+	uart5_write(send_cmd,5);
 }
 
 
@@ -250,6 +315,45 @@ unsigned char Write_mcu_flash(unsigned int flash_address,unsigned char * write_d
   }
 	while(1);
 }
+int Read_mcu_flash(unsigned int flash_address,unsigned char * read_data,unsigned int read_length)
+{
+    unsigned char temp[2]; 
+	temp[0] = read_length - 1;
+	temp[1] = ~temp[0];
+
+	mcu_count = 0;
+	memset(rcv_mcu_buf,0,sizeof(rcv_mcu_buf));
+	//发送读取命令
+	send_command(S_READ);
+	waitACK();
+	mcu_count = 0;
+	memset(rcv_mcu_buf,0,sizeof(rcv_mcu_buf));
+	send_adress(flash_address);
+	waitACK();
+	
+	mcu_count = 0;
+	memset(rcv_mcu_buf,0,sizeof(rcv_mcu_buf));
+	//发送读取的字节数
+	uart5_write(&temp[0],1);
+	//发送读取的字节数
+	uart5_write(&temp[1],1);
+	while(1)
+	{
+        if(0 != mcu_count) 
+		{
+            if(0x79 == rcv_mcu_buf[0])
+                return 1;
+            else
+                return 0;
+        }
+    }
+	mcu_count = 0;
+	memset(rcv_mcu_buf,0,sizeof(rcv_mcu_buf));
+    //下面接收数据
+    for(int i=0;i<read_length;i++)
+        read_data[i] = rcv_mcu_buf[i];
+    return 1;
+}
 
 void send_erase_data(void)
 {
@@ -318,3 +422,13 @@ unsigned char flash_erase_all(void)
 		return 0;
 	}
 }
+int stm32isp_verify(unsigned char * write_buffer,unsigned char * read_buffer,int len)
+{
+	for(int i=0;i<len;i++)
+	{
+		if(write_buffer[i] != read_buffer[i])
+		return 0;
+		else
+		return 1;
+	}
+}   
