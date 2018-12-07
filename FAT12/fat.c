@@ -224,12 +224,13 @@ int fat12_read(FILE1*fp, void *buff, unsigned long __sb,bool flag)
 			{	
 				FLASH_If_Write(&flashdestination, (uint32_t*) buff, (uint16_t) (read_size/4)); 
 			}
+			
 			//从机升级程序
 			else if(flag ==1)
 			{
 				if(mcu_page_num == 0)                    //首次写时进行一次全页擦除已写数据
 				{
-					result = flash_erase_all();
+					//result = flash_erase_all();
 					if(result == 0)
 					{
 						//擦除芯片未收到回应

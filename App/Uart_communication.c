@@ -168,7 +168,7 @@ void send_data(unsigned char * data,unsigned int data_length)
 	{
 		send_cmd[i+1] = data[i];
 	}
-
+    
 	send_cmd[i+1] = Generate_XorCheckByte(send_cmd,(data_length + 1));
 	mcu_count = 0;
 	memset(rcv_mcu_buf,0,sizeof(rcv_mcu_buf));
@@ -179,7 +179,7 @@ void send_data(unsigned char * data,unsigned int data_length)
 
 unsigned char Write_mcu_flash(unsigned int flash_address,unsigned char * write_data,unsigned int write_length)
 {
-	unsigned char S_W_STATE = S_W_CMD, write_err_num = 0;
+	unsigned char S_W_STATE = S_W_CMD,write_err_num = 0;
 	
 	do
 	{
