@@ -80,7 +80,7 @@ int waitACK()    //等待接收数据，第一个字节如果是0x79则认为ok返回1，如果是0x1f则
 {
     while(1)
 	{
-		delay_nms(1000);
+		delay_nms(100);
         if(0 != mcu_count) 
 		{
             if(0x79 == rcv_mcu_buf[0])
@@ -315,8 +315,10 @@ unsigned char Write_mcu_flash(unsigned int flash_address,unsigned char * write_d
   }
 	while(1);
 }
+//从从机flash指定地址中读出写入的数据
 int Read_mcu_flash(unsigned int flash_address,unsigned char * read_data,unsigned int read_length)
 {
+	unsigned char i = 0;
     unsigned char temp[2]; 
 	temp[0] = read_length - 1;
 	temp[1] = ~temp[0];
@@ -325,11 +327,14 @@ int Read_mcu_flash(unsigned int flash_address,unsigned char * read_data,unsigned
 	memset(rcv_mcu_buf,0,sizeof(rcv_mcu_buf));
 	//发送读取命令
 	send_command(S_READ);
-	waitACK();
+	if(waitACK() != 1 )
+		return 0;
+	
 	mcu_count = 0;
 	memset(rcv_mcu_buf,0,sizeof(rcv_mcu_buf));
 	send_adress(flash_address);
-	waitACK();
+	if(waitACK() != 1 )
+		return 0;
 	
 	mcu_count = 0;
 	memset(rcv_mcu_buf,0,sizeof(rcv_mcu_buf));
@@ -337,21 +342,16 @@ int Read_mcu_flash(unsigned int flash_address,unsigned char * read_data,unsigned
 	uart5_write(&temp[0],1);
 	//发送读取的字节数
 	uart5_write(&temp[1],1);
-	while(1)
-	{
-        if(0 != mcu_count) 
-		{
-            if(0x79 == rcv_mcu_buf[0])
-                return 1;
-            else
-                return 0;
-        }
-    }
+	
+	while(0x79 != rcv_mcu_buf[0]);
+
 	mcu_count = 0;
 	memset(rcv_mcu_buf,0,sizeof(rcv_mcu_buf));
+	delay_nms(2000);
     //下面接收数据
     for(int i=0;i<read_length;i++)
         read_data[i] = rcv_mcu_buf[i];
+	
     return 1;
 }
 

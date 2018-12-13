@@ -240,6 +240,7 @@ int main(void)
 	unsigned int i = 0 ,result = 0;
 	static char counter=0;
 	unsigned char msg_string[2]={0};
+	unsigned char temp_led = 0;
 	hard_init();
 	MCU_UPDATE_IO_init();
 	if((GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_9) != 0))
@@ -354,7 +355,13 @@ int main(void)
 					delay_nms(500);
 					cout=fpp->f_size;
 					//读取文件内容并通过串口传给从机
-					fat12_read(fpp, buf, cout,1);  
+					result = fat12_read(fpp, buf, cout,1);  
+					//如果从机升级失败，则进入该循环
+					while(result == 0)
+					{
+						update_led(temp_led ++);
+						delay_nms(1000);
+					}
 					Slave_flag=1;											
 				}
 				//如果主机和从机任一个升级完成则关机。之后需要人为开机

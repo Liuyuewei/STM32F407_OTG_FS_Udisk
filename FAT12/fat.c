@@ -150,14 +150,13 @@ void BlockToHTS(unsigned long block, int *head, int *track, int *sector )
 //更新程序时闪灯
 void update_led(unsigned int  temp)
 {
-	temp ++;
 	if(temp % 2)
 	{
-		GPIO_ResetBits(GPIOE,GPIO_Pin_4); //关闭LED指示灯	LYW 20181203
+		GPIO_SetBits(GPIOE,GPIO_Pin_4); //开启LED指示灯	LYW 20181203
 	}
 	else
 	{
-		GPIO_SetBits(GPIOE,GPIO_Pin_4); //开启LED指示灯	LYW 20181203
+		GPIO_ResetBits(GPIOE,GPIO_Pin_4); //关闭LED指示灯	LYW 20181203
 	}
 }
 //---------------------------------------------------------------------------------------------------------------------
@@ -235,9 +234,16 @@ int fat12_read(FILE1*fp, void *buff, unsigned long __sb,bool flag)
 				}
 				Write_mcu_flash((MCU_START_FLASH + mcu_page_num * 256),(uint8_t*) buff,256);
 				Read_mcu_flash((MCU_START_FLASH + mcu_page_num * 256),(uint8_t*) read_temp,256);
-				stm32isp_verify((unsigned char*)buff,(unsigned char*)read_temp,256);
+				result = stm32isp_verify((unsigned char*)buff,(unsigned char*)read_temp,256);
+				if(result != 1)
+					return 0;
 				mcu_page_num++;
+				
 				Write_mcu_flash((MCU_START_FLASH + mcu_page_num * 256),((uint8_t*) buff + 256),256);
+				Read_mcu_flash((MCU_START_FLASH + mcu_page_num * 256),(uint8_t*) read_temp,256);
+				result = stm32isp_verify((unsigned char*)buff + 256,(unsigned char*)read_temp,256);
+				if(result != 1)
+					return 0;
 				mcu_page_num++;
 			}			
 		}  	   
@@ -262,12 +268,25 @@ int fat12_read(FILE1*fp, void *buff, unsigned long __sb,bool flag)
 				if(send_length < 257)
 				{
 					Write_mcu_flash((MCU_START_FLASH + mcu_page_num * 256),(uint8_t*) buff,send_length);
+					Read_mcu_flash((MCU_START_FLASH + mcu_page_num * 256),(uint8_t*) read_temp,send_length);
+					result = stm32isp_verify((unsigned char*)buff,(unsigned char*)read_temp,send_length);
+					if(result != 1)
+					return 0;
 				}
 				else
 				{
 					Write_mcu_flash((MCU_START_FLASH + mcu_page_num * 256),(uint8_t*) buff,256);
+					Read_mcu_flash((MCU_START_FLASH + mcu_page_num * 256),(uint8_t*) read_temp,256);
+					result = stm32isp_verify((unsigned char*)buff,(unsigned char*)read_temp,256);
+					if(result != 1)
+					return 0;
 					mcu_page_num++;
-					Write_mcu_flash((MCU_START_FLASH + mcu_page_num * 256),(uint8_t*) buff,(send_length - 256));
+					Write_mcu_flash((MCU_START_FLASH + mcu_page_num * 256),((uint8_t*) buff + 256),(send_length - 256));
+					Read_mcu_flash((MCU_START_FLASH + mcu_page_num * 256),(uint8_t*) read_temp,(send_length - 256));
+					result = stm32isp_verify((unsigned char*)buff + 256,(unsigned char*)read_temp,(send_length - 256));
+					if(result != 1)
+					return 0;
+					
 				}
 			}		 
 				offset = 0; 

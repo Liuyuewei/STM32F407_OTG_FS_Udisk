@@ -135,7 +135,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name></Name>
+          <Name>p?</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -182,25 +182,25 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>344</LineNumber>
+          <LineNumber>308</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134221446</Address>
+          <Address>134239814</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\work\Project\FastRing\Design\Software\涓嬩綅鏈?椋炵壒鍑濇牱鏈?绋嬪簭\STM32F407_OTG_FS_Udisk\App\main.c</Filename>
+          <Filename>E:\work\Project\FastRing\Design\Software\涓嬩綅鏈?椋炵壒鍑濇牱鏈?绋嬪簭\STM32F407_OTG_FS_Udisk\FAT12\fat.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\STM32F407_EVAL\../../App/main.c\344</Expression>
+          <Expression>\\STM32F407_EVAL\../../FAT12/fat.c\308</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>347</LineNumber>
+          <LineNumber>255</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134221458</Address>
+          <Address>134241098</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -209,39 +209,71 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>E:\work\Project\FastRing\Design\Software\涓嬩綅鏈?椋炵壒鍑濇牱鏈?绋嬪簭\STM32F407_OTG_FS_Udisk\App\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\STM32F407_EVAL\../../App/main.c\347</Expression>
+          <Expression>\\STM32F407_EVAL\../../App/main.c\255</Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>351</LineNumber>
+          <LineNumber>280</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134221474</Address>
+          <Address>134240298</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\work\Project\FastRing\Design\Software\涓嬩綅鏈?椋炵壒鍑濇牱鏈?绋嬪簭\STM32F407_OTG_FS_Udisk\App\main.c</Filename>
+          <Filename>E:\work\Project\FastRing\Design\Software\涓嬩綅鏈?椋炵壒鍑濇牱鏈?绋嬪簭\STM32F407_OTG_FS_Udisk\FAT12\fat.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\STM32F407_EVAL\../../App/main.c\351</Expression>
+          <Expression>\\STM32F407_EVAL\../../FAT12/fat.c\280</Expression>
         </Bp>
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>254</LineNumber>
+          <LineNumber>286</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134221024</Address>
+          <Address>134240364</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\work\Project\FastRing\Design\Software\涓嬩綅鏈?椋炵壒鍑濇牱鏈?绋嬪簭\STM32F407_OTG_FS_Udisk\App\main.c</Filename>
+          <Filename>E:\work\Project\FastRing\Design\Software\涓嬩綅鏈?椋炵壒鍑濇牱鏈?绋嬪簭\STM32F407_OTG_FS_Udisk\FAT12\fat.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\STM32F407_EVAL\../../App/main.c\254</Expression>
+          <Expression>\\STM32F407_EVAL\../../FAT12/fat.c\286</Expression>
+        </Bp>
+        <Bp>
+          <Number>4</Number>
+          <Type>0</Type>
+          <LineNumber>430</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134242172</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>E:\work\Project\FastRing\Design\Software\涓嬩綅鏈?椋炵壒鍑濇牱鏈?绋嬪簭\STM32F407_OTG_FS_Udisk\App\Uart_communication.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\STM32F407_EVAL\../../App/Uart_communication.c\430</Expression>
+        </Bp>
+        <Bp>
+          <Number>5</Number>
+          <Type>0</Type>
+          <LineNumber>432</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134242176</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>E:\work\Project\FastRing\Design\Software\涓嬩綅鏈?椋炵壒鍑濇牱鏈?绋嬪簭\STM32F407_OTG_FS_Udisk\App\Uart_communication.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\STM32F407_EVAL\../../App/Uart_communication.c\432</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -249,11 +281,6 @@
           <count>0</count>
           <WinNumber>1</WinNumber>
           <ItemText>rcv_mcu_buf</ItemText>
-        </Ww>
-        <Ww>
-          <count>1</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>buff</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>
@@ -287,10 +314,18 @@
         <Mm>
           <WinNumber>1</WinNumber>
           <SubType>0</SubType>
-          <ItemText>0x200011E8</ItemText>
+          <ItemText>write_buffer+256</ItemText>
           <AccSizeX>0</AccSizeX>
         </Mm>
       </MemoryWindow1>
+      <MemoryWindow2>
+        <Mm>
+          <WinNumber>2</WinNumber>
+          <SubType>0</SubType>
+          <ItemText>read_buffer</ItemText>
+          <AccSizeX>0</AccSizeX>
+        </Mm>
+      </MemoryWindow2>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
@@ -462,7 +497,7 @@
 
   <Group>
     <GroupName>STM32F4xx</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -494,7 +529,7 @@
 
   <Group>
     <GroupName>STM32F4xx_StdPeriph_Driver</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

@@ -26,7 +26,7 @@
 #define     S_W_ADD           0x02
 #define     S_W_NUM           0x03
 
-#define     MCU_START_FLASH   (0x08000000)
+#define     MCU_START_FLASH   ((uint32_t)0x08000000)
 
 
 

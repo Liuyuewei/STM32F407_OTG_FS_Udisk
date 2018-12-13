@@ -289,6 +289,8 @@ void fat32_printrootdir(void);
 
 void getfat32info(void);
 
+void update_led(unsigned int  temp);
+
 #endif
 
 
